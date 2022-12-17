@@ -58,13 +58,11 @@ class SongListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-        itemCount: song.length,
-        itemBuilder: ((context, index) {
-          return SongListEntry(song: song[index]);
-        }),
-      ),
+    return ListView.builder(
+      itemCount: song.length,
+      itemBuilder: ((context, index) {
+        return SongListEntry(song: song[index]);
+      }),
     );
   }
 }
