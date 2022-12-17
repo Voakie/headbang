@@ -4,48 +4,57 @@ import 'package:headbang/model/song.dart';
 import 'package:headbang/views/song_player_view.dart';
 
 class SongListView extends StatelessWidget {
-  final List<Song> song = [
+  final List<Song> song = const [
     Song(
+        id: 0,
         name: "Chiquitita",
         author: "ABBA",
-        bpm: 0,
+        bpm: 84,
         source: "assets/songs/ABBA - Chiquitita-converted.mp3"),
     Song(
+        id: 1,
         name: "Still D.R.E.",
         author: "Dr. Dre",
-        bpm: 0,
+        bpm: 93,
         source:
             "assets/songs/Dr. Dre, Snoop Dogg - Still D.R.E.-converted.mp3"),
     Song(
+        id: 2,
         name: "Atemlos durch die Nacht",
         author: "Helene Fischer",
-        bpm: 0,
+        bpm: 128,
         source:
             "assets/songs/Helene Fischer - Atemlos durch die Nacht-converted.mp3"),
     Song(
+        id: 3,
         name: "All I Want for Christmas Is You",
         author: "Mariah Carey",
-        bpm: 0,
+        bpm: 75,
         source:
             "assets/songs/Mariah Carey - All I Want for Christmas Is You-converted.mp3"),
     Song(
+        id: 4,
         name: "Can't Stop",
         author: "Red Hot Chili Peppers",
-        bpm: 0,
+        bpm: 92,
         source:
             "assets/songs/Red Hot Chili Peppers - Can't Stop-converted.mp3"),
     Song(
+        id: 5,
         name: "Dior 2001",
         author: "RIN",
-        bpm: 0,
+        bpm: 77,
         source: "assets/songs/RIN - Dior 2001-converted.mp3"),
     Song(
+        id: 6,
         name: "Last Christmas",
         author: "Wham!",
-        bpm: 0,
+        bpm: 107,
         source:
             "assets/songs/Wham! - Last Christmas - Remastered-converted.mp3"),
   ];
+
+  const SongListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +70,9 @@ class SongListView extends StatelessWidget {
 }
 
 class SongListEntry extends StatelessWidget {
-  SongListEntry({super.key, required this.song});
+  const SongListEntry({super.key, required this.song});
 
-  Song song;
+  final Song song;
 
   void playSong(BuildContext context) {
     Navigator.of(context).push(
@@ -75,7 +84,17 @@ class SongListEntry extends StatelessWidget {
     return ListTile(
       title: Text(song.name),
       subtitle: Text(song.author),
-      trailing: const Icon(Icons.chevron_right),
+      trailing: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Text("${song.bpm.toString()} BPM"),
+          ),
+          const Icon(Icons.chevron_right),
+        ],
+      ),
       onTap: () => playSong(context),
     );
   }

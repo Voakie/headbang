@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:headbang/model/song.dart';
 import 'package:headbang/model/song_player.dart';
 
 class SongPlayerView extends StatefulWidget {
-  SongPlayerView({super.key, required this.song});
+  const SongPlayerView({super.key, required this.song});
 
   final Song song;
 
@@ -17,7 +16,7 @@ class _SongPlayerViewState extends State<SongPlayerView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Songplayer"),
+        title: const Text("Songplayer"),
       ),
       body: Center(
         child: Column(
@@ -32,6 +31,15 @@ class _SongPlayerViewState extends State<SongPlayerView> {
               widget.song.author,
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
               textAlign: TextAlign.center,
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 20),
+              child: Text(
+                "${widget.song.bpm.toString()} BPM",
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                textAlign: TextAlign.center,
+              ),
             ),
             Container(
               margin: const EdgeInsets.only(top: 30),
@@ -51,6 +59,11 @@ class _SongPlayerViewState extends State<SongPlayerView> {
     );
   }
 
+  Future<void> startPlaying() async {
+    await songPlayer.playSong(widget.song);
+    setState(() {});
+  }
+
   void togglePlaying() {
     setState(() {
       songPlayer.togglePlaying();
@@ -60,7 +73,7 @@ class _SongPlayerViewState extends State<SongPlayerView> {
   @override
   void initState() {
     super.initState();
-    songPlayer.playSong(widget.song);
+    startPlaying();
   }
 
   @override

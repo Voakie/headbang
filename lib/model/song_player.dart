@@ -6,12 +6,12 @@ final songPlayer = SongPlayer();
 class SongPlayer {
   final AudioPlayer _player = AudioPlayer();
   Song? _song;
-  
+
   Future<void> playSong(Song song) async {
     _song = song;
 
     await _player.setAsset(song.source);
-    await _player.play();
+    _player.play();
   }
 
   Future<void> togglePlaying() async {
