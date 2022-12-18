@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ManualView extends StatelessWidget {
@@ -25,7 +24,7 @@ class ManualView extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(15),
             child: Text(
-              "In dieser App geht es darum, mit einem eSense earable die eigenen Nickbewegungen zur abgespielten Musik aufzuzeichnen. Dabei wird der BPM des Nickens mit der BPM des Liedes verglichen. Je nachdem wie gut der Spieler im Takt liegt, steigt der Punktestand umso schneller.",
+              "In dieser App geht es darum, mit einem eSense Earable die eigenen Nickbewegungen zur abgespielten Musik aufzuzeichnen. Dabei wird der BPM des Nickens mit der BPM des Liedes verglichen. Je nachdem wie gut der Spieler im Takt liegt, steigt der Punktestand umso schneller.",
               style: TextStyle(fontSize: 20),
             ),
           ),

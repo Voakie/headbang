@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:esense_flutter/esense.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -19,7 +20,9 @@ class DeviceManager {
       Permission.locationWhenInUse,
       Permission.location,
     ].request();
-    print(permStat);
+    if (kDebugMode) {
+      print(permStat);
+    }
 
     if (permStat.containsValue(PermissionStatus.denied) ||
         permStat.containsValue(PermissionStatus.permanentlyDenied)) {
@@ -34,7 +37,9 @@ class DeviceManager {
       for (var oneRes in res) {
         if (oneRes.device.name == "") continue;
 
-        print('found ${oneRes.device.name}');
+        if (kDebugMode) {
+          print('found ${oneRes.device.name}');
+        }
 
         var match = eSenseRE.firstMatch(oneRes.device.name);
         if (match != null) {
@@ -56,7 +61,9 @@ class DeviceManager {
     var sub = _eSenseManager!.connectionEvents.listen(connectionEvents);
 
     bool connecting = await _eSenseManager!.connect();
-    print("connecting: $connecting");
+    if (kDebugMode) {
+      print("connecting: $connecting");
+    }
     return sub;
   }
 

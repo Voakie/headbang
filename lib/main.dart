@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   void openManual(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => ManualView()));
+        .push(MaterialPageRoute(builder: (context) => const ManualView()));
   }
 
   // This widget is the root of your application.

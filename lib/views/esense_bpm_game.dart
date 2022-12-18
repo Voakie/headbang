@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:esense_flutter/esense.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:headbang/device_manager.dart';
 import 'package:headbang/model/song.dart';
@@ -64,7 +64,9 @@ class _ESenseBPMGameState extends State<ESenseBPMGame> {
   }
 
   void _connectionEvents(ConnectionEvent event) {
-    print("connection event: $event");
+    if (kDebugMode) {
+      print("connection event: $event");
+    }
 
     switch (event.type) {
       case ConnectionType.connected:

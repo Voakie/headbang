@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:esense_flutter/esense.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:headbang/device_manager.dart';
 
@@ -29,7 +29,9 @@ class _EsenseStatusViewState extends State<EsenseStatusView> {
   bool _connecting = false;
 
   void _connectionEvents(ConnectionEvent event) {
-    print("connection event: $event");
+    if (kDebugMode) {
+      print("connection event: $event");
+    }
 
     switch (event.type) {
       case ConnectionType.connected:
@@ -70,8 +72,10 @@ class _EsenseStatusViewState extends State<EsenseStatusView> {
         _connectionEventsSubscription =
             await deviceManager.connect(_connectionEvents);
       } catch (e) {
-        print(
-            "Exception occurred in connect(): $e. DEVICE STATUS: Connected: ${deviceManager.connected}");
+        if (kDebugMode) {
+          print(
+              "Exception occurred in connect(): $e. DEVICE STATUS: Connected: ${deviceManager.connected}");
+        }
         setState(() {
           _connecting = false;
         });

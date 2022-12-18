@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:headbang/model/song.dart';
 import 'package:headbang/views/song_player_view.dart';
