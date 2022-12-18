@@ -37,7 +37,7 @@ class _SongPlayerViewState extends State<SongPlayerView> {
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: Text(
-                "${widget.song.bpm.toString()} BPM",
+                "Ziel: ${widget.song.bpm.toString()} BPM",
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
