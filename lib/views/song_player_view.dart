@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:headbang/model/song.dart';
 import 'package:headbang/model/song_player.dart';
+import 'package:headbang/views/esense_bpm_game.dart';
 
 class SongPlayerView extends StatefulWidget {
   const SongPlayerView({super.key, required this.song});
@@ -22,6 +23,7 @@ class _SongPlayerViewState extends State<SongPlayerView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            ESenseBPMGame(song: widget.song),
             Text(
               widget.song.name,
               style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),

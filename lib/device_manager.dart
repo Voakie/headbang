@@ -65,6 +65,12 @@ class DeviceManager {
   }
 
   /// Only call this when a device is connected
+  StreamSubscription<ConnectionEvent> listenConnectionEvents(
+      Function(ConnectionEvent) callback) {
+    return _eSenseManager!.connectionEvents.listen(callback);
+  }
+
+  /// Only call this when a device is connected
   StreamSubscription<SensorEvent> listenSensorEvents(
       Function(SensorEvent) callback) {
     return _eSenseManager!.sensorEvents.listen(callback);
@@ -76,6 +82,7 @@ class DeviceManager {
     return _eSenseManager!.eSenseEvents.listen(callback);
   }
 
+  bool get present => _eSenseManager != null;
   bool get connected => _eSenseManager?.connected ?? false;
 }
 

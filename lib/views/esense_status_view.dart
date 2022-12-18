@@ -19,8 +19,8 @@ class _EsenseStatusViewState extends State<EsenseStatusView> {
   }
 
   @override
-  Future<void> dispose() async {
-    await _cleanUpOldConnection();
+  void dispose() {
+    _cleanUpOldConnection();
     super.dispose();
   }
 
@@ -91,6 +91,7 @@ class _EsenseStatusViewState extends State<EsenseStatusView> {
 
   Future<void> _cleanUpOldConnection() async {
     await _connectionEventsSubscription?.cancel();
+    _connectionEventsSubscription = null;
   }
 
   Widget rightContent() {
