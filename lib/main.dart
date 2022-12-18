@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:headbang/views/esense_status_view.dart';
 import 'package:headbang/views/song_list_view.dart';
 
 void main() {
@@ -20,8 +21,16 @@ class MyApp extends StatelessWidget {
           // the App.build method, and use it to set our appbar title.
           title: const Text("Wähle einen Song"),
         ),
-        body:
-            const SongListView(), // This trailing comma makes auto-formatting nicer for build methods.
+        body: Container(
+          child: Column(
+            children: const [
+              EsenseStatusView(),
+              Expanded(
+                child: SongListView(),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
