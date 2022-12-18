@@ -101,7 +101,7 @@ class _ESenseBPMGameState extends State<ESenseBPMGame> {
           _smoothLength = _nodDirectionLength.toDouble();
         } else {
           var diff = _nodDirectionLength - _smoothLength;
-          _smoothLength += diff * 0.1;
+          _smoothLength += diff * 0.05;
         }
 
         if (_nodDirectionLength < 1) _nodDirectionLength = 1;
@@ -109,8 +109,14 @@ class _ESenseBPMGameState extends State<ESenseBPMGame> {
         var directBPM = (60000 / (_nodDirectionLength * 2)).round();
         var smoothBPM = (60000 / (_smoothLength * 2)).round();
 
-        if (_smoothLength > 100 && _smoothLength < 60000) {
-          _playerBPM = (60000 / (_smoothLength * 2)).round();
+        if ((directBPM - widget.song.bpm).abs() <
+            (smoothBPM - widget.song.bpm).abs()) {
+          smoothBPM = directBPM;
+          _smoothLength = _nodDirectionLength.toDouble();
+        }
+
+        if (smoothBPM > 100 && smoothBPM < 60000) {
+          _playerBPM = smoothBPM;
         }
       });
     }
