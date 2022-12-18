@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:headbang/model/song.dart';
-import 'package:headbang/model/song_player.dart';
+import 'package:headbang/song_player.dart';
 import 'package:headbang/views/esense_bpm_game.dart';
 
 class SongPlayerView extends StatefulWidget {

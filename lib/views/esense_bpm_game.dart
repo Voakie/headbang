@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:headbang/device_manager.dart';
 import 'package:headbang/model/song.dart';
-import 'package:headbang/model/song_player.dart';
+import 'package:headbang/song_player.dart';
 
 class ESenseBPMGame extends StatefulWidget {
   const ESenseBPMGame({super.key, required this.song});
