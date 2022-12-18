@@ -96,7 +96,10 @@ class _EsenseStatusViewState extends State<EsenseStatusView> {
 
   Widget rightContent() {
     if (_connecting) {
-      return const CircularProgressIndicator();
+      return const Padding(
+        padding: EdgeInsets.all(6),
+        child: CircularProgressIndicator(),
+      );
     } else if (deviceManager.connected) {
       return ElevatedButton(
         onPressed: disconnect,
