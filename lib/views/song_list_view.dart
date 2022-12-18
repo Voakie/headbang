@@ -19,6 +19,13 @@ class SongListView extends StatelessWidget {
         source:
             "assets/songs/Dr. Dre, Snoop Dogg - Still D.R.E.-converted.mp3"),
     Song(
+        id: 10,
+        name: "Still D.R.E. SHORT",
+        author: "Dr. Dre",
+        bpm: 93,
+        source:
+            "assets/songs/Dr. Dre, Snoop Dogg - Still D.R.E.-converted-short.mp3"),
+    Song(
         id: 2,
         name: "Atemlos durch die Nacht",
         author: "Helene Fischer",

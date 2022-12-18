@@ -28,4 +28,7 @@ class SongPlayer {
 
   bool get playing => _player.playing;
   Song? get song => _song;
+
+  Duration? get songDuration => _player.duration;
+  Duration? get songPosition => _player.position;
 }

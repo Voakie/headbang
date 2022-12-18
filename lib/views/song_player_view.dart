@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:headbang/model/song.dart';
 import 'package:headbang/song_player.dart';
@@ -13,6 +15,8 @@ class SongPlayerView extends StatefulWidget {
 }
 
 class _SongPlayerViewState extends State<SongPlayerView> {
+  late final Timer _timer;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +42,15 @@ class _SongPlayerViewState extends State<SongPlayerView> {
               margin: const EdgeInsets.only(top: 20),
               child: Text(
                 "Ziel: ${widget.song.bpm.toString()} BPM",
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 20),
+              child: Text(
+                _remainingTime,
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
@@ -72,15 +85,36 @@ class _SongPlayerViewState extends State<SongPlayerView> {
     });
   }
 
+  String get _remainingTime {
+    var pos = songPlayer.songPosition;
+    var dur = songPlayer.songDuration;
+    if (pos != null && dur != null) {
+      var remaining = dur - pos;
+      var seconds = (remaining.inSeconds % 60).toString();
+      if (seconds.length == 1) seconds = "0$seconds";
+      return "${remaining.inMinutes}:$seconds";
+    } else {
+      return "--:--";
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     startPlaying();
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      setState(() {});
+      if (_remainingTime == "0:00" && songPlayer.playing) {
+        songPlayer.stop();
+      }
+    });
   }
 
   @override
   void dispose() {
     songPlayer.stop();
+    _timer.cancel();
     super.dispose();
   }
 }
