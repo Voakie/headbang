@@ -128,10 +128,10 @@ class _CustomSongListEntryState extends State<CustomSongListEntry> {
       MaterialPageRoute(
         builder: (context) => SongPlayerView(
           song: Song(
-            author: "Spiele deine eigene Musik ab",
+            author: "Listen to your own music",
             bpm: parsedBPM,
             id: 9999,
-            name: "Eigener Song",
+            name: "Custom",
             source: "",
             isCustom: true,
           ),
@@ -151,7 +151,7 @@ class _CustomSongListEntryState extends State<CustomSongListEntry> {
               TextField(
                 autofocus: true,
                 decoration: const InputDecoration(
-                  label: Text("Zahl eingeben"),
+                  label: Text("Enter a number"),
                 ),
                 keyboardType: TextInputType.number,
                 onChanged: (s) => _customBPMInput = s,
@@ -164,7 +164,7 @@ class _CustomSongListEntryState extends State<CustomSongListEntry> {
                   children: [
                     TextButton(
                       onPressed: () => _playCustomSong(context),
-                      child: const Text("Fertig"),
+                      child: const Text("Done"),
                     ),
                   ],
                 ),
@@ -177,8 +177,8 @@ class _CustomSongListEntryState extends State<CustomSongListEntry> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: const Text("Eigener Song"),
-      subtitle: const Text("Setze die BPM fest und höre deine eigene Musik"),
+      title: const Text("Custom"),
+      subtitle: const Text("Listen to your own music"),
       trailing: const Icon(Icons.chevron_right),
       onTap: () => _showBPMDialog(context),
     );

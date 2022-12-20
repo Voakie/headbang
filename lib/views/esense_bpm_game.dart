@@ -174,7 +174,7 @@ class _ESenseBPMGameState extends State<ESenseBPMGame> {
       return Container(
         margin: const EdgeInsets.only(left: 20, right: 20, bottom: 80),
         child: const Text(
-          "Kehre in das Hauptmenü zurück um ein eSense Gerät zu verbinden",
+          "Return to the main menu to connect an eSense device",
           style: TextStyle(
             color: Colors.redAccent,
             fontSize: 20,
@@ -198,7 +198,7 @@ class _ESenseBPMGameState extends State<ESenseBPMGame> {
             ),
             textAlign: TextAlign.center,
           ),
-          Text("Dein Score: $_score")
+          Text("Your Score: $_score")
         ],
       ),
     );

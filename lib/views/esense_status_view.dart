@@ -107,12 +107,12 @@ class _EsenseStatusViewState extends State<EsenseStatusView> {
     } else if (deviceManager.connected) {
       return ElevatedButton(
         onPressed: disconnect,
-        child: const Text("Trennen"),
+        child: const Text("Disconnect"),
       );
     } else {
       return ElevatedButton(
         onPressed: connect,
-        child: const Text("Verbinden"),
+        child: const Text("Connect"),
       );
     }
   }
@@ -126,7 +126,7 @@ class _EsenseStatusViewState extends State<EsenseStatusView> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "eSense ${deviceManager.connected ? "verbunden" : "nicht verbunden"}",
+            "eSense ${deviceManager.connected ? "connected" : "not connected"}",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,

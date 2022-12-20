@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
         .push(MaterialPageRoute(builder: (context) => const ManualView()));
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,9 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: const Text("Wähle einen Song"),
+          title: const Text("Choose a Song"),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 10),

@@ -21,7 +21,7 @@ class _SongPlayerViewState extends State<SongPlayerView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Songplayer"),
+        title: const Text("Song player"),
       ),
       body: Center(
         child: Column(
@@ -41,7 +41,7 @@ class _SongPlayerViewState extends State<SongPlayerView> {
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: Text(
-                "Ziel: ${widget.song.bpm.toString()} BPM",
+                "Target: ${widget.song.bpm.toString()} BPM",
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
