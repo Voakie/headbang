@@ -91,7 +91,7 @@ class _ESenseBPMGameState extends State<ESenseBPMGame> {
     var nodAxis = event.gyro?[2];
     bool directionChanged = false;
 
-    if (nodAxis != null && songPlayer.playing) {
+    if (nodAxis != null && (songPlayer.playing || widget.song.isCustom)) {
       if (nodAxis >= 0 && _nodDirection == NodDirection.up) {
         _nodDirection = NodDirection.down;
         directionChanged = true;
@@ -174,7 +174,7 @@ class _ESenseBPMGameState extends State<ESenseBPMGame> {
       return Container(
         margin: const EdgeInsets.only(left: 20, right: 20, bottom: 80),
         child: const Text(
-          "Return to the main menu to connect to an eSense device",
+          "Kehre in das Hauptmenü zurück um ein eSense Gerät zu verbinden",
           style: TextStyle(
             color: Colors.redAccent,
             fontSize: 20,

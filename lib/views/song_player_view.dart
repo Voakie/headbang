@@ -47,27 +47,31 @@ class _SongPlayerViewState extends State<SongPlayerView> {
                 textAlign: TextAlign.center,
               ),
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 20),
-              child: Text(
-                _remainingTime,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 30),
-              child: ElevatedButton(
-                onPressed: () => togglePlaying(),
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(20),
-                ),
-                child:
-                    Icon(songPlayer.playing ? Icons.pause : Icons.play_arrow),
-              ),
-            ),
+            widget.song.isCustom
+                ? Container()
+                : Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    child: Text(
+                      _remainingTime,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+            widget.song.isCustom
+                ? Container()
+                : Container(
+                    margin: const EdgeInsets.only(top: 30),
+                    child: ElevatedButton(
+                      onPressed: () => togglePlaying(),
+                      style: ElevatedButton.styleFrom(
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(20),
+                      ),
+                      child: Icon(
+                          songPlayer.playing ? Icons.pause : Icons.play_arrow),
+                    ),
+                  ),
           ],
         ),
       ),
@@ -101,6 +105,8 @@ class _SongPlayerViewState extends State<SongPlayerView> {
   @override
   void initState() {
     super.initState();
+    if (widget.song.isCustom) return;
+
     startPlaying();
 
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
@@ -113,8 +119,10 @@ class _SongPlayerViewState extends State<SongPlayerView> {
 
   @override
   void dispose() {
-    songPlayer.stop();
-    _timer.cancel();
+    if (!widget.song.isCustom) {
+      songPlayer.stop();
+      _timer.cancel();
+    }
     super.dispose();
   }
 }

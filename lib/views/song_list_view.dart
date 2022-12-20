@@ -65,9 +65,13 @@ class SongListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: song.length,
+      itemCount: song.length + 1,
       itemBuilder: ((context, index) {
-        return SongListEntry(song: song[index]);
+        if (index == song.length) {
+          return const CustomSongListEntry();
+        } else {
+          return SongListEntry(song: song[index]);
+        }
       }),
     );
   }
@@ -100,6 +104,83 @@ class SongListEntry extends StatelessWidget {
         ],
       ),
       onTap: () => playSong(context),
+    );
+  }
+}
+
+class CustomSongListEntry extends StatefulWidget {
+  const CustomSongListEntry({super.key});
+
+  @override
+  State<CustomSongListEntry> createState() => _CustomSongListEntryState();
+}
+
+class _CustomSongListEntryState extends State<CustomSongListEntry> {
+  String _customBPMInput = "";
+
+  _playCustomSong(BuildContext context) {
+    int? parsedBPM = int.tryParse(_customBPMInput);
+
+    Navigator.of(context).pop();
+    if (parsedBPM == null || parsedBPM <= 0 || parsedBPM > 60000) return;
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => SongPlayerView(
+          song: Song(
+            author: "Spiele deine eigene Musik ab",
+            bpm: parsedBPM,
+            id: 9999,
+            name: "Eigener Song",
+            source: "",
+            isCustom: true,
+          ),
+        ),
+      ),
+    );
+  }
+
+  _showBPMDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            contentPadding: const EdgeInsets.all(16),
+            title: const Text("BPM festlegen"),
+            children: [
+              TextField(
+                autofocus: true,
+                decoration: const InputDecoration(
+                  label: Text("Zahl eingeben"),
+                ),
+                keyboardType: TextInputType.number,
+                onChanged: (s) => _customBPMInput = s,
+                onSubmitted: (_) => _playCustomSong(context),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () => _playCustomSong(context),
+                      child: const Text("Fertig"),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          );
+        });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: const Text("Eigener Song"),
+      subtitle: const Text("Setze die BPM fest und höre deine eigene Musik"),
+      trailing: const Icon(Icons.chevron_right),
+      onTap: () => _showBPMDialog(context),
     );
   }
 }
