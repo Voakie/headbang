@@ -146,7 +146,7 @@ class _CustomSongListEntryState extends State<CustomSongListEntry> {
         builder: (context) {
           return SimpleDialog(
             contentPadding: const EdgeInsets.all(16),
-            title: const Text("BPM festlegen"),
+            title: const Text("Set BPM"),
             children: [
               TextField(
                 autofocus: true,
