@@ -52,7 +52,7 @@ class DeviceManager {
     s.cancel();
 
     if (device == null) {
-      throw "no eSense device found, regex mismatch";
+      throw "No eSense device found. Make sure the device is turned on and close to your Smartphone";
     }
 
     _eSenseManager?.disconnect().ignore();

@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:headbang/device_manager.dart';
 
+import 'error_dialog.dart';
+
 class EsenseStatusView extends StatefulWidget {
   const EsenseStatusView({super.key});
 
@@ -60,7 +62,7 @@ class _EsenseStatusViewState extends State<EsenseStatusView> {
     }
   }
 
-  void connect() async {
+  void connect(BuildContext context) async {
     if (!deviceManager.connected) {
       setState(() {
         _connecting = true;
@@ -76,6 +78,7 @@ class _EsenseStatusViewState extends State<EsenseStatusView> {
           print(
               "Exception occurred in connect(): $e. DEVICE STATUS: Connected: ${deviceManager.connected}");
         }
+        showErrorDialog(context: context, title: "Error", text: e.toString());
         setState(() {
           _connecting = false;
         });
@@ -111,7 +114,9 @@ class _EsenseStatusViewState extends State<EsenseStatusView> {
       );
     } else {
       return ElevatedButton(
-        onPressed: connect,
+        onPressed: () {
+          connect(context);
+        },
         child: const Text("Connect"),
       );
     }
