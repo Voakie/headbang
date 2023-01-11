@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:headbang/model/song.dart';
 import 'package:headbang/song_player.dart';
+import 'package:headbang/views/error_dialog.dart';
 import 'package:headbang/views/esense_bpm_game.dart';
 
 class SongPlayerView extends StatefulWidget {
@@ -79,7 +80,15 @@ class _SongPlayerViewState extends State<SongPlayerView> {
   }
 
   Future<void> startPlaying() async {
-    await songPlayer.playSong(widget.song);
+    try {
+      await songPlayer.playSong(widget.song);
+    } catch (e) {
+      showErrorDialog(
+          context: context,
+          text:
+              "All songs were removed from the public version to prevent copyright problems. Either use the Custom song option or add your own songs",
+          title: "Unavailable");
+    }
     setState(() {});
   }
 
